@@ -1,4 +1,4 @@
-package org.newsportal.database.dao;
+package org.newsportal.database.dao.util;
 
 import org.newsportal.database.dao.entity.News;
 

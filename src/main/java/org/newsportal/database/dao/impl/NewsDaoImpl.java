@@ -1,6 +1,6 @@
 package org.newsportal.database.dao.impl;
 
-import org.newsportal.database.dao.NewsDao;
+import org.newsportal.database.dao.util.NewsDao;
 import org.newsportal.database.dao.entity.News;
 import org.newsportal.database.dao.entity.User;
 import org.newsportal.database.dao.util.ConnectionPool;
