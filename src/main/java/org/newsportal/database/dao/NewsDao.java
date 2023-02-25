@@ -1,14 +1,14 @@
 package org.newsportal.database.dao;
 
-import org.newsportal.database.entity.News;
+import org.newsportal.database.dao.entity.News;
 
 import java.util.List;
 
 public interface NewsDao {
-    public List<News> findAll();
-    public News findNewsById(Long id);
-    public News findNewsByTitle(String title);
-    public News createNews(News news);
-    public News updateNews(Long id, News news);
-    public void deleteNews(Long id);
+    List<News> findAll();
+    News findNewsById(Long id);
+    News findNewsByTitle(String title);
+    News createNews(News news);
+    News updateNews(Long id, News news);
+    void deleteNews(Long id);
 }
