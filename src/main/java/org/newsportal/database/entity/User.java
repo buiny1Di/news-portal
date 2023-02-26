@@ -1,6 +1,7 @@
 package org.newsportal.database.entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,13 +14,13 @@ public class User {
     private String login;
     @Column(name = "password")
     private String password;
-    @OneToMany
-    private Set<News> news;
+    @OneToMany(mappedBy = "user")
+    private List<News> news;
 
     public User() {
     }
 
-    public User(String id, String login, String password, Set<News> news) {
+    public User(String id, String login, String password, List<News> news) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -50,11 +51,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<News> getNews() {
+    public List<News> getNews() {
         return news;
     }
 
-    public void setNews(Set<News> news) {
+    public void setNews(List<News> news) {
         this.news = news;
     }
 
@@ -64,7 +65,7 @@ public class User {
                 "id='" + id + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", news=" + news +
+                ", news=" + news.toString() +
                 '}';
     }
 }

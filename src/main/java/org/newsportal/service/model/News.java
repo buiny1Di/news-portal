@@ -1,19 +1,13 @@
-package org.newsportal.database.entity;
+package org.newsportal.service.model;
+
+import org.newsportal.database.entity.User;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "NEWS")
 public class News {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    @Column(name = "title")
     private String title;
-    @Column(name = "content")
     private String content;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
     public News() {
@@ -64,7 +58,7 @@ public class News {
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", userId=" + user.getId() +
+                ", user=" + user +
                 '}';
     }
 }

@@ -6,7 +6,7 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">my-secret-pw</property>
-        <property name="hibernate.connection.url">jdbc:mysql:localhost:3306:news_portal</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/news_portal</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
