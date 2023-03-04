@@ -26,7 +26,9 @@ public class NewsRepositoryImpl implements NewsRepository {
 
     @Override
     public News findNewsById(String id) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(News.class, id);
+        }
     }
 
     @Override
@@ -47,29 +49,45 @@ public class NewsRepositoryImpl implements NewsRepository {
 
     @Override
     public News updateNews(String id, News news) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            News n = session.get(News.class, id);
+            n.setTitle(news.getTitle());
+            n.setContent(news.getContent());
+            n.setUser(news.getUser());
+            session.save(n);
+            session.getTransaction().commit();
+            return n;
+        }
     }
 
     @Override
     public void deleteNews(String id) {
-
-    }
-
-    public User findUserById(String id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(User.class, id);
+            session.beginTransaction();
+            News news = session.get(News.class, id);
+            session.delete(news);
+            session.getTransaction().commit();
         }
     }
-
     public static void main(String[] args) {
         NewsRepositoryImpl newsRepository = new NewsRepositoryImpl();
-//        News news = new News();
-//        news.setTitle("test title");
-//        news.setContent("test content");
-//        User user = newsRepository.findUserById("7");
-//        news.setUser(user);
-//        newsRepository.createNews(news);
-        System.out.println(newsRepository.findAll());
-        System.out.println(newsRepository.findNewsByTitle("test title"));
+        UserRepositoryImpl userRepository = new UserRepositoryImpl();
+       /* News news = new News();
+        news.setTitle("test supertest");
+        news.setContent("test supercontent");
+        news.setUser(userRepository.findUserById("7"));
+        newsRepository.updateNews("9" , news);
+        newsRepository.deleteNews("9");
+        User user = userRepository.findUserById("7");*/
+       // userRepository.deleteUser("10");
+        User user = new User();
+        user.setLogin("Annia");
+        user.setPassword("11111");
+
+        userRepository.updateUser("9", user);
+
+        //System.out.println(newsRepository.findAll());
+       // System.out.println(newsRepository.findNewsByTitle("test title"));
     }
 }
