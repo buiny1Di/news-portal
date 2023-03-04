@@ -1,6 +1,6 @@
 package org.newsportal.service.model;
 
-import org.newsportal.database.entity.User;
+import org.newsportal.service.model.User;
 
 import javax.persistence.*;
 

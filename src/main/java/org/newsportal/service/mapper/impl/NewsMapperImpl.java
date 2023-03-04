@@ -17,7 +17,7 @@ public class NewsMapperImpl implements NewsMapper {
 
     @Override
     public List<org.newsportal.service.model.News> mapToService(List<News> source) {
-        return null;
+        return source.stream().map(this::mapToService).filter(Objects::nonNull).collect(Collectors.toList());
     }
 
     @Override
@@ -39,6 +39,18 @@ public class NewsMapperImpl implements NewsMapper {
 
     @Override
     public org.newsportal.service.model.News mapToService(News source) {
-        return null;
+        if (source == null) {
+            return null;
+        }
+
+        org.newsportal.service.model.User user = null;
+        if (source.getUser() != null) {
+            user = new org.newsportal.service.model.User();
+            user.setId(source.getUser().getId());
+            user.setLogin(source.getUser().getLogin());
+            user.setPassword(source.getUser().getPassword());
+        }
+        return new org.newsportal.service.model.News(source.getId(), source.getTitle(), source.getContent(), user);
+
     }
 }
