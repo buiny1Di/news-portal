@@ -78,10 +78,10 @@ public class UserDaoImpl implements UserDAO {
     @Override
     public User updateUser(long id, User user) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE USERS SET login = ?, password = ? WHERE id = ?")) {
-            ResultSet resultSet = preparedStatement.executeQuery(); //Уточнить
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, String.valueOf(id));
+            preparedStatement.executeQuery();
             return user;
         } catch (SQLException e) {
             e.printStackTrace();

@@ -43,7 +43,7 @@ public class NewsDaoImpl implements NewsDao {
         return newsList;
     }
 
-    public News findNewsById(Long id) {
+    public News findNewsById(long id) {
         News news = null;
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM NEWS WHERE id = ?")) {
             preparedStatement.setLong(1, id);
@@ -73,6 +73,7 @@ public class NewsDaoImpl implements NewsDao {
                 news.setTitle(resultSet.getString("title"));
                 news.setUserId(resultSet.getString("user_id"));
             }
+            resultSet.close();
             return news;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,7 +94,7 @@ public class NewsDaoImpl implements NewsDao {
         return null;
     }
 
-    public News updateNews(Long id, News news) {
+    public News updateNews(long id, News news) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE NEWS SET title = ?, content = ? , user_id = ? WHERE id = ?")) {
             preparedStatement.setString(1, news.getTitle());
             preparedStatement.setString(2, news.getContent());
@@ -107,7 +108,7 @@ public class NewsDaoImpl implements NewsDao {
         return null;
     }
 
-    public void deleteNews(Long id) {
+    public void deleteNews(long id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE id = ?")) {
             preparedStatement.setLong(1, id);
             preparedStatement.executeQuery();
@@ -120,7 +121,7 @@ public class NewsDaoImpl implements NewsDao {
         NewsDaoImpl dao = new NewsDaoImpl();
         UserDaoImpl dao1 = new UserDaoImpl();
         dao1.createUser(new User("Dima", "password"));
-        dao.createNews(new News("Sport", "Hamiltom is wins", "4"));
+        dao.createNews(new News("Sport", "Hamiltom is wins", "7"));
     }
 }
 

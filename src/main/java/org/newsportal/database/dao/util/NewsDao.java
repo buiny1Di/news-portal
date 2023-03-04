@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface NewsDao {
     List<News> findAll();
-    News findNewsById(Long id);
+    News findNewsById(long id);
     News findNewsByTitle(String title);
     News createNews(News news);
-    News updateNews(Long id, News news);
-    void deleteNews(Long id);
+    News updateNews(long id, News news);
+    void deleteNews(long id);
 }

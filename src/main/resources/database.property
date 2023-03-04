@@ -1,0 +1,5 @@
+user = root
+password = my-secret-pw
+url = jdbc:mysql://localhost:3306/news_portal
+max_connections = 10
+min_connections = 5
