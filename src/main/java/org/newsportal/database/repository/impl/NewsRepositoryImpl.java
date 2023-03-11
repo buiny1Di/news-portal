@@ -7,9 +7,11 @@ import org.newsportal.database.entity.News;
 import org.newsportal.database.entity.User;
 import org.newsportal.database.repository.NewsRepository;
 import org.newsportal.database.util.HibernateUtil;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class NewsRepositoryImpl implements NewsRepository {
     private final SessionFactory sessionFactory;
 

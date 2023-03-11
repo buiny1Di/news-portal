@@ -5,7 +5,6 @@ import org.newsportal.database.entity.User;
 import org.newsportal.service.mapper.NewsMapper;
 import org.newsportal.service.mapper.UserMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -27,10 +26,18 @@ public class UserMapperImpl implements UserMapper {
             return null;
         }
 
-        NewsMapper newsMapper = new NewsMapperImpl();
-        List<News> news = newsMapper.mapToDatabase(source.getNews());
-        return new User(source.getId(), source.getLogin(), source.getPassword(), news);
+        List<News> news = source.getNews().stream()
+                .filter(Objects::nonNull)
+                .map(serviceNews -> {
+                    News databaseNews = new News();
+                    databaseNews.setId(serviceNews.getId());
+                    databaseNews.setTitle(serviceNews.getTitle());
+                    databaseNews.setContent(serviceNews.getContent());
+                    return databaseNews;
+                })
+                .collect(Collectors.toList());
 
+        return new User(source.getId(), source.getLogin(), source.getPassword(), news);
     }
 
     @Override

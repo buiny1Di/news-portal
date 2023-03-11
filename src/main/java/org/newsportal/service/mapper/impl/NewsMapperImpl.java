@@ -3,11 +3,12 @@ package org.newsportal.service.mapper.impl;
 import org.newsportal.database.entity.News;
 import org.newsportal.database.entity.User;
 import org.newsportal.service.mapper.NewsMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
+@Component
 public class NewsMapperImpl implements NewsMapper {
 
     @Override

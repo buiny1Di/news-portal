@@ -45,13 +45,12 @@ public class UserRepositoryImpl implements UserRepository {
     public User updateUser(String id, User user) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            User u = session.get(User.class, id);
-            u.setLogin(user.getLogin());
-            u.setPassword(user.getPassword());
-            u.setNews(user.getNews());
-            session.save(u);
+            User newUser = session.get(User.class, id);
+            newUser.setLogin(user.getLogin());
+            newUser.setPassword(user.getPassword());
+            newUser.setNews(user.getNews());
             session.getTransaction().commit();
-            return u;
+            return newUser;
         }
 
     }
