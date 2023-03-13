@@ -31,4 +31,11 @@ public class NewsController {
     ) {
         return ResponseEntity.ok(newsService.getNewsById(id).orElseThrow(RuntimeException::new));
     }
+
+    @GetMapping("/news/{title}")
+    public ResponseEntity<News> getNewsByTitle(
+            @PathVariable String title
+    ) {
+        return ResponseEntity.ok(newsService.getNewsByTitle(title).orElseThrow(RuntimeException::new));
+    }
 }

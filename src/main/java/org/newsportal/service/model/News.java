@@ -1,9 +1,5 @@
 package org.newsportal.service.model;
 
-import org.newsportal.service.model.User;
-
-import javax.persistence.*;
-
 public class News {
     private String id;
     private String title;
@@ -58,7 +54,7 @@ public class News {
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", user=" + user +
+                ", user=" + user.getId() +
                 '}';
     }
 }

@@ -4,11 +4,12 @@ import org.newsportal.database.entity.News;
 import org.newsportal.database.entity.User;
 import org.newsportal.service.mapper.NewsMapper;
 import org.newsportal.service.mapper.UserMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
+@Component
 public class UserMapperImpl implements UserMapper {
     @Override
     public List<User> mapToDatabase(List<org.newsportal.service.model.User> source) {

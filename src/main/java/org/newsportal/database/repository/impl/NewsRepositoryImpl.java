@@ -15,8 +15,8 @@ import java.util.List;
 public class NewsRepositoryImpl implements NewsRepository {
     private final SessionFactory sessionFactory;
 
-    public NewsRepositoryImpl() {
-        this.sessionFactory = HibernateUtil.getSessionFactory();
+    public NewsRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     @Override
@@ -72,24 +72,5 @@ public class NewsRepositoryImpl implements NewsRepository {
             session.getTransaction().commit();
         }
     }
-    public static void main(String[] args) {
-        NewsRepositoryImpl newsRepository = new NewsRepositoryImpl();
-        UserRepositoryImpl userRepository = new UserRepositoryImpl();
-       /* News news = new News();
-        news.setTitle("test supertest");
-        news.setContent("test supercontent");
-        news.setUser(userRepository.findUserById("7"));
-        newsRepository.updateNews("9" , news);
-        newsRepository.deleteNews("9");
-        User user = userRepository.findUserById("7");*/
-       // userRepository.deleteUser("10");
-        User user = new User();
-        user.setLogin("Annia");
-        user.setPassword("11111");
 
-        userRepository.updateUser("9", user);
-
-        //System.out.println(newsRepository.findAll());
-       // System.out.println(newsRepository.findNewsByTitle("test title"));
-    }
 }

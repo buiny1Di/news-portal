@@ -6,21 +6,47 @@ import org.newsportal.database.entity.News;
 import org.newsportal.database.entity.User;
 import org.newsportal.database.repository.UserRepository;
 import org.newsportal.database.util.HibernateUtil;
+import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
-
+@Repository
 public class UserRepositoryImpl implements UserRepository {
-
+    EntityManagerFactory entityManagerFactory;
     private final SessionFactory sessionFactory;
 
-    public UserRepositoryImpl() {
-        this.sessionFactory = HibernateUtil.getSessionFactory();
+    public UserRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     @Override
     public List<User> findAll() {
+        /*
+        EntityManager em = entityManagerFactory.createEntityManager();
+        em.getTransaction().begin();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<User> personCriteria = cb.createQuery(User.class);
+        Root<User> userRoot = personCriteria.from(User.class);
+        personCriteria.select(userRoot);
+        em.createQuery(personCriteria)
+                .getResultList()
+                .forEach(System.out::println);
+          */
+
+
+
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Users", User.class).getResultList();
+            session.beginTransaction();
+            Query query = session.createQuery("FROM Users", User.class);
+            List<User> users = query.getResultList();
+            session.getTransaction().commit();
+            sessionFactory.close();
+            return users;
         }
 
     }
