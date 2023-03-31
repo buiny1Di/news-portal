@@ -42,7 +42,7 @@ public class UserRepositoryImpl implements UserRepository {
 
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            Query query = session.createQuery("FROM Users", User.class);
+            Query query = session.createQuery("FROM User", User.class);
             List<User> users = query.getResultList();
             session.getTransaction().commit();
             sessionFactory.close();

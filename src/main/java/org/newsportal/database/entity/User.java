@@ -1,5 +1,7 @@
 package org.newsportal.database.entity;
 
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +16,7 @@ public class User {
     private String login;
     @Column(name = "password")
     private String password;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER , mappedBy = "user" , cascade = CascadeType.ALL)
     private List<News> news;
 
     public User() {

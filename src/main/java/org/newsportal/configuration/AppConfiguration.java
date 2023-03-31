@@ -14,15 +14,14 @@ import org.newsportal.service.mapper.NewsMapper;
 import org.newsportal.service.mapper.UserMapper;
 import org.newsportal.service.mapper.impl.NewsMapperImpl;
 import org.newsportal.service.mapper.impl.UserMapperImpl;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-//@EnableWebMvc
-@ComponentScan("org.newsportal")
+@EnableWebMvc
+@ComponentScan(basePackages = "org.newsportal")
 public class AppConfiguration {
     @Bean
     public SessionFactory sessionFactory() {

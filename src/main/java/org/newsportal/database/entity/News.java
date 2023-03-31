@@ -12,7 +12,7 @@ public class News {
     private String title;
     @Column(name = "content")
     private String content;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
 
